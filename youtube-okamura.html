@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube 岡村</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; padding: 32px 16px;
+      background: #f9f9f9; color: #181818;
+      font-family: Arial, system-ui, sans-serif;
+    }
+    main { width: min(760px, 100%); margin: 0 auto; }
+    header { display:flex; align-items:center; gap:12px; margin-bottom:30px; }
+    .logo { background:#e62117; color:white; border-radius:12px; padding:9px 13px; font-weight:800; }
+    h1 { margin:0; font-size:clamp(25px, 5vw, 36px); }
+    p { color:#606060; line-height:1.6; }
+    .panel { background:white; border:1px solid #e5e5e5; border-radius:16px; padding:22px; }
+    label { display:block; font-weight:700; margin-bottom:10px; }
+    input {
+      width:100%; padding:14px; border:1px solid #aaa; border-radius:10px;
+      font-size:16px; margin-bottom:12px;
+    }
+    button {
+      width:100%; padding:14px; border:0; border-radius:10px;
+      background:#e62117; color:white; font-size:16px; font-weight:700;
+      cursor:pointer;
+    }
+    button:hover { background:#c91d15; }
+    #message { min-height:24px; color:#b42318; font-size:14px; }
+    .note { font-size:13px; margin-top:18px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="logo">▶ YouTube</div>
+      <h1>岡村</h1>
+    </header>
+    <section class="panel">
+      <label for="video-url">YouTubeの動画URL</label>
+      <input id="video-url" type="url" placeholder="https://www.youtube.com/watch?v=..." autocomplete="url">
+      <button id="open-button" type="button">YouTubeで開く</button>
+      <div id="message" role="status" aria-live="polite"></div>
+      <p class="note">公開されている通常の動画は、ログインせずに再生できる場合があります。年齢制限・非公開動画などはログインが必要なことがあります。</p>
+    </section>
+    <p class="note">このページはYouTubeへのリンクを開くためのページです。YouTubeの公式サイトではなく、学校やネットワークのアクセス制限を回避するものでもありません。</p>
+  </main>
+  <script>
+    const input = document.getElementById('video-url');
+    const message = document.getElementById('message');
+    document.getElementById('open-button').addEventListener('click', () => {
+      let url;
+      try { url = new URL(input.value.trim()); } catch {
+        message.textContent = 'YouTubeのURLを入力してください。'; return;
+      }
+      const host = url.hostname.toLowerCase().replace(/^www\./, '');
+      if (!['youtube.com', 'm.youtube.com', 'youtu.be'].includes(host)) {
+        message.textContent = 'youtube.com または youtu.be のURLを入力してください。'; return;
+      }
+      message.textContent = '';
+      window.open(url.href, '_blank', 'noopener,noreferrer');
+    });
+  </script>
+</body>
+</html>
