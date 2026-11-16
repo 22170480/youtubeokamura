@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube 岡村</title>
+<style>
+body {
+  margin: 0;
+  background: #f9f9f9;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+header {
+  background: #202020;
+  color: white;
+  padding: 22px;
+  font-size: 26px;
+  font-weight: bold;
+}
+main {
+  margin: 100px auto;
+  padding: 20px;
+}
+input {
+  width: 65%;
+  max-width: 500px;
+  padding: 15px;
+  font-size: 18px;
+  border: 1px solid #aaa;
+  border-radius: 25px;
+}
+button {
+  padding: 15px 24px;
+  border: none;
+  border-radius: 25px;
+  background: #ff0033;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<header>YouTube 岡村</header>
+<main>
+  <h1>動画を検索</h1>
+  <form action="https://www.youtube.com/results" method="get">
+    <input type="text" name="search_query" placeholder="キーワードを入力" required>
+    <button type="submit">検索</button>
+  </form>
+</main>
+</body>
+</html>
